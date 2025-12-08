@@ -35,4 +35,29 @@ public class Masina extends Vehicul {
         }
     }
 //Cod Sumurduc Aurelian-Andrei
+    //Cod Mihaluta Andrei Cosmin
+    public static void scrieInFisierBinar(ArrayList<Masina> lista, String numeFisier) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(numeFisier))) {
+
+        oos.writeObject(lista);
+        System.out.println("Lista a fost salvată în fișier binar.");
+
+    } catch (IOException e) {
+        System.out.println("Eroare la scriere: " + e.getMessage());
+    }
+}
+    public static ArrayList<Masina> citesteDinFisierBinar(String numeFisier) {
+    ArrayList<Masina> lista = new ArrayList<>();
+
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(numeFisier))) {
+
+        lista = (ArrayList<Masina>) ois.readObject();
+
+    } catch (IOException | ClassNotFoundException e) {
+        System.out.println("Eroare la citire: " + e.getMessage());
+    }
+
+    return lista;
+}
+    
 }
